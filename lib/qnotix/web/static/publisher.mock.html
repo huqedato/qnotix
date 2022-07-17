@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        html,
+        body {
+            background-color: #2a4365;
+            color: #edf2f7;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        div {
+            padding: 1em;
+        }
+
+        h1 {
+            color: #b6cb41;
+        }
+
+        a,
+        a:hover,
+        a:focus,
+        a:active {
+            color: inherit;
+        }
+    </style>
+    <title>Qnotix - Pub Mock</title>
+</head>
+
+<body>
+    <div>
+        <div>
+            <h2>
+                <%= topic %>
+            </h2>
+        </div>
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title">
+        <br>
+        <label for="msg">Message:</label>
+        <input type="text" id="msg" name="msg">
+        <br>
+        <label for="priority">Priority:</label>
+        <input type="range" id="priority" name="priority" min="1" max="5" value=3>
+        <br>
+        <label for="tags">Tags:</label>
+        <input type="text" id="tags" name="tags">
+        <br>
+        <label for="click">Url:</label>
+        <input type="url" id="click" name="click">
+        <br>
+        <button id="submit">Submit</button>
+    </div>
+    <div id="response"></div>
+</body>
+<script>
+
+    const randomString = function (length) {
+        let str = '';
+        const chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz'.split(
+            '');
+        if (!length) {
+            length = ~~(Math.random() * chars.length);
+        }
+        for (let i = 0; i < length; i++) {
+            str += chars[~~(Math.random() * chars.length)];
+        }
+        return str;
+    };
+
+    const title = document.getElementById('title')
+    const msg = document.getElementById('msg')
+    const priority = document.getElementById('priority')
+    const tags = document.getElementById('tags')
+    const url = document.getElementById('click')
+    const btnSubmit = document.getElementById("submit")
+    const response = document.getElementById('response')
+
+    btnSubmit.addEventListener("click", function () {
+
+        const body = {
+            id: randomString(16),
+            event: "message",
+            message: msg.value ? msg.value : randomString(30) + ' ' + randomString(35),
+            priority: parseInt(priority.value)
+        }
+        if (tags.value) body.tags = tags.value.split(',')
+        if (url.value) body.click = url.value
+        if (title.value) body.title = title.value
+        // console.log(body)
+
+
+
+        fetch('/pub', {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(body)
+        }).then(res => res.clone().text())
+            .then(text => {
+                console.log(text)
+                response.innerHTML = text
+            })
+    })
+</script>
+
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qnotix - End topic</title>
+    <style>
+        html,
+        body {
+            background-color: #2a4365;
+            color: #edf2f7;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        div {
+            padding: 1em;
+        }
+
+        h1 {
+            color: #b6cb41;
+        }
+
+        a,
+        a:hover,
+        a:focus,
+        a:active {
+            color: inherit;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Qnotix</h1>
+    <h4>End topic by:</h4>
+    <div>
+        <label for="fname">Topic name:</label>
+        <input type="text" id="topic" name="topic">
+        <button id="endTopic">End</button>
+    </div>
+    or
+    <div>
+        <label for="fname">Port number:</label>
+        <input type="number" id="port" name="port">
+        <button id="endPort">End</button>
+    </div>
+    <p id="response"></p>
+</body>
+<script>
+    const topic = document.getElementById('topic')
+    const port = document.getElementById('port')
+    const btnT = document.getElementById("endTopic")
+    const btnP = document.getElementById("endPort")
+    const response = document.getElementById('response')
+
+    btnT.addEventListener("click", function () {
+        if (topic.value) {
+            const val = topic.value
+            fetch(`/end/topic/${val}`)
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    response.innerHTML += val + ' → ' + data + '<br>'
+                })
+            topic.value = null
+        }
+    })
+
+    btnP.addEventListener("click", function () {
+        if (port.value) {
+            const val = port.value
+            fetch(`/end/port/${val}`)
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data);
+                    response.innerHTML += val + ' → ' + data + '<br>'
+                })
+            topic.value = null
+        }
+    })
+</script>
+
+</html>
