@@ -1,15 +1,15 @@
 # Qnotix
 
-Qnotix is a minimalist Pub/Sub notification system written in Elixir based on just `Plug Cowboy` module and websockets. 
+Qnotix is a Pub/Sub notification system written in Elixir based on just websockets implementation of [Plug.Cowboy](https://github.com/elixir-plug/plug_cowboy). 
 
 
 
 ## Description
 
-Qnotix is a topic-based system, highly resilient, each topic running within its own, independent, supervised procees.
+Qnotix is a topic-based system, highly resilient, each topic running within its own, independent, supervised processes.
 
-The Pub side feeds events using HTML Post API.
-The Sub side is dispatching events through websocket connection. 
+The Pub side feeds events by HTML POST API.
+The Sub side is dispatching events as push-notifications to clients through websocket connection. 
 
 Both Pub and Sub sides depend and evolve on a named topic and its own port number.
 
@@ -20,13 +20,14 @@ Find more details at [Qnotix documentation on Hexdocs](http://hexdocs.pm/qnotix)
 
 
 
->This application (though slighly modified) is actually in production since March 2022 for a private surveillance company, serving more than 150 subscribers from 17 publishers.
+>This application (though slightly modified) is actually in production since March 2022 for a private surveillance company, serving more than 150 subscribers from 17 publishers.
 
 
 
 ## Installation
+Copy this repo via git clone `https://github.com/huqedato/qnotix` or download it.
 
-Add `qnotix` to your list of dependencies in `mix.exs`:
+Alternatively, as a dependency, add `qnotix` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
@@ -35,12 +36,15 @@ def deps do
   ]
 end
 ```
-Set application's management port (backendPort) and start port numbering of topics (wsStartPort) in `runtime.exs`.
+
+Then run `mix deps.get`.
+
+
+Set application's management port (*backendPort*), start port numbering for topics (*wsStartPort*) and event lifetime in days (*msgDeadAfter*) in `runtime.exs`.
 
 
 
-## Usage
-
+## Configuration & Usage
 
 
  
@@ -52,7 +56,7 @@ Launch a new topic on the desired port `Qnotix.newTopic(topic_name, port)`.
 
 Check the web management interface for supervising topics and ports, registering new topics, kill topics etc.
 
-By example, considering the server runnning localy on port 4000 and a topic named *myTopic* on port 4111 one can:
+By example, considering the server running locally on port 4000 and a topic named *myTopic* on port 4111 one can:
 - access web management interface: `http://localhost:4000`
 - register a new topic: `http://localhost:4000/new`
 - kill topic by name or port `http://localhost:4000/end`
@@ -72,13 +76,13 @@ http://hexdocs.pm/qnotix
 Kindly asking the Elixir community's support for:
 - development of a dedicated Android/IOS notification client for Qnotix
 - improved documentation
-- system extention for providing data streaming from 3rd party applications, services, or IoT devices (Nerves integration?)
-- scalability testing on distributed environmnent  - multiple Erlang nodes, clustering
+- system extension for providing data streaming from 3rd party applications, services, or IoT devices (Nerves integration?)
+- scalability testing on distributed environment  - multiple Erlang nodes, clustering
 - add security layer
 
 
 
->As we lack expertise in mobile apps developmnet we would greatly appreciate the Community's involvement for development of a dedicated notification client for Android/IOS. 
+>As we lack expertise in mobile apps development we would greatly appreciate the Community's involvement for development of a dedicated notification client for Android/IOS. 
 
 
 ## License
