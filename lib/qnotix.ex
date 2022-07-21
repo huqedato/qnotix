@@ -3,7 +3,7 @@ defmodule Qnotix do
   alias Qnotix.TopicsManager
 
   @moduledoc """
-  Qnotix is a minimalist Pub/Sub notification system written in Elixir based on just `Plug Cowboy` module and websockets.
+  Qnotix is a Pub/Sub notification system written in Elixir based on just `Plug Cowboy` module and websockets.
   
   
   ## Description
@@ -93,7 +93,8 @@ defmodule Qnotix do
   iex(1)> Qnotix.getTopics
     [
       %{pid: "#PID<0.398.0>", port: 4321, topic: "hello"},
-      %{pid: "#PID<0.507.0>", port: 4001, topic: "kkt"}
+      %{pid: "#PID<0.507.0>", port: 4001, topic: "friend"}
+      %{pid: "#PID<0.523.0>", port: 4005, topic: "foe"}
     ]
   ```
   """

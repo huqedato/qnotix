@@ -31,12 +31,11 @@ defmodule Qnotix.MixProject do
   end
 
   defp description() do
-    "Qnotix is a minimalist Pub/Sub notification system developed in Elixir and based on just `Plug Cowboy` module and websockets."
+    "Qnotix is a Pub/Sub notification system developed in Elixir and based on just `Plug Cowboy` module and websockets."
   end
 
   defp package do
     [
-      # These are the default files included in the package
       files: ~w(lib config .formatter.exs mix.exs README* LICENSE* CHANGELOG*),
       licenses: ["AGPL-3.0-or-later"],
       links: %{"GitHub" => "https://github.com/huqedato/qnotix"}

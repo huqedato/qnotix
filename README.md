@@ -14,7 +14,7 @@ The Sub side is dispatching events as push-notifications to clients through webs
 Both Pub and Sub sides depend and evolve on a named topic and its own port number.
 
 The format of messages, JSON, is similar to that of [ntfy](https://ntfy.sh/docs/subscribe/api/#json-message-format).
-As Sub client, the [ntfy Android app](https://ntfy.sh/docs/subscribe/phone/) must be used, the flavor available on [F-Droid](https://f-droid.org/en/packages/io.heckel.ntfy/), without Firebase. *Not being an Android developer, I would greatly appreciate support for building a dedicated Android client for Qnotix*.
+As Sub client, the [ntfy Android app](https://ntfy.sh/docs/subscribe/phone/) must be used, the flavor available on [F-Droid](https://f-droid.org/en/packages/io.heckel.ntfy/), without Firebase.
 
 Find more details at [Qnotix documentation on Hexdocs](http://hexdocs.pm/qnotix).
 
@@ -65,7 +65,7 @@ By example, considering the server running locally on port 4000 and a topic name
 
 
 
-Qnotix is only compatible and working with [ntfy Android client app](https://ntfy.sh/docs/subscribe/phone/). The topic format/url is `ws://host:port/topic_name/ws`. Ex: `ws://192.168.1.1:4001/myTopic/ws`
+Qnotix is only compatible and working with [ntfy Android client app](https://ntfy.sh/docs/subscribe/phone/). The topic format/url is `ws://host:port/topic_name/ws`. Ex: `ws://192.168.1.1:4111/myTopic/ws`
 
 
 ## Documentation
@@ -77,8 +77,8 @@ Kindly asking the Elixir community's support for:
 - development of a dedicated Android/IOS notification client for Qnotix
 - improved documentation
 - system extension for providing data streaming from 3rd party applications, services, or IoT devices (Nerves integration?)
-- scalability testing on distributed environment  - multiple Erlang nodes, clustering
-- add security layer
+- scalability testing on distributed environment - multiple Erlang nodes, clustering
+- adding a security layer
 
 
 
